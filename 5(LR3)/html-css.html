@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Калькулятор</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <button onclick="showResult()">Посчитать</button>
+    </div>
+
+    <script>
+        function showResult() {
+            const num1 = parseFloat(prompt("Введите число x:"));
+            const num2 = parseFloat(prompt("Введите число y:"));
+            const operator = prompt("Выберите оператор: +, -, *, /");
+            
+            if (isNaN(num1) || isNaN(num2)) {
+                alert('Ошибка: Не введены значения x и y.');
+            } else if (operator === null) {
+                alert('Отмена');
+            } else {
+                let result;
+                switch (operator) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        if (num2 === 0) {
+                            alert('Ошибка: Деление на ноль');
+                            return;
+                        }
+                        result = num1 / num2;
+                        break;
+                    default:
+                        alert('Ошибка: Неправильный оператор');
+                        return;
+                }
+                alert(`Результат: ${num1} ${operator} ${num2} = ${result}`);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Животные</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+ 
+  <style>
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    th.center-text {
+      text-align: center;
+      color: #0000ff; 
+    }
+    
+    th, td {
+      text-align: center;
+      vertical-align: middle;
+      width: 100px;
+      height: 200px;
+      padding: 10px;
+      border: 1px solid #aaa;
+      color: #0000ff; 
+    }
+
+    h1 {
+      text-align: center;
+    }
+    
+    .hidden {
+      display: none;
+    }
+
+    .slideshow-buttons {
+      text-align: center;
+    }
+
+    .slideshow-buttons button {
+      margin: 5px;
+    }
+
+    .image-cell {
+      max-width: 100%; 
+      height: auto; 
+      text-align: center; 
+    }
+
+    .image-cell img {
+      max-width: 100%; 
+      height: auto; 
+    }
+  </style>
+</head>
+<body>
+  <h1 style="color: #0000ff;">Слайд-шоу</h1>
+  <table class="outer-table">
+    <tr>
+      <td onmouseover="showImage('acula');" onmouseout="hideImage('acula')">Акула</td>
+      <td class="image-cell" rowspan="3">
+        <img id="acula" class="hidden" src="acula.gif" alt="Изображение акулы">
+        <img id="croc" class="hidden" src="croc.gif" alt="Изображение крокодила">
+        <img id="frog" class="hidden" src="frog.gif" alt="Изображение лягушки">
+      </td>
+    </tr>
+    <tr>
+      <td onmouseover="showImage('croc');" onmouseout="hideImage('croc')">Крокодил</td>
+    </tr>
+    <tr>
+      <td onmouseover="showImage('frog');" onmouseout="hideImage('frog')">Лягушка</td>
+    </tr>
+  </table>
+
+  <div class="slideshow-buttons">
+    <button onclick="prevSlide()">Предыдущий</button>
+    <button onclick="nextSlide()">Следующий</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = ["acula", "croc", "frog"];
+
+    function showImage(id) {
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    function hideImage(id) {
+      document.getElementById(id).classList.add("hidden");
+    }
+
+    function nextSlide() {
+      hideImage(slides[currentSlide]);
+      currentSlide = (currentSlide + 1) % slides.length;
+      showImage(slides[currentSlide]);
+    }
+
+    function prevSlide() {
+      hideImage(slides[currentSlide]);
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showImage(slides[currentSlide]);
+    }
+  </script>
+</body>
+</html>
