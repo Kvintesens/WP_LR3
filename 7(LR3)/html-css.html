@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Дни жизни</title>
+</head>
+<body>
+    <script>
+        function daysBetweenDates(date1, date2) {
+            const oneDay = 24 * 60 * 60 * 1000; // Один день в миллисекундах
+            const days = Math.abs((date2 - date1) / oneDay);
+            return days;
+        }
+
+        function askForBirthday() {
+            const inputDate = prompt("Введите дату своего рождения в формате ГГ.ММ.ДД:");
+            if (inputDate) {
+                const birthday = new Date(inputDate);
+                const today = new Date();
+                const daysLived = daysBetweenDates(birthday, today);
+
+                document.getElementById("result").innerHTML = `Вы прожили ${daysLived} дней!`;
+            }
+        }
+    </script>
+    
+    <div id="result"></div>
+
+    <button onclick="askForBirthday()">Показать количество дней</button>
+</body>
+</html>

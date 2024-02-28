@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Генератор сказок</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Генератор сказок</h1>
+    <form id="storyForm">
+        <table>
+            <tr>
+                <td><label for="hero-name">Имя героя</label></td>
+                <td><input type="text" id="hero-name" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="hero-activity">Любимое занятие</label></td>
+                <td><input type="text" id="hero-activity" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="hero-friend">Имя друга героя</label></td>
+                <td><input type="text" id="hero-friend" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="hero-gift">Любимый подарок</label></td>
+                <td><input type="text" id="hero-gift" required></td>
+            </tr>
+        </table>
+
+        <input type="button" value="Сгенерировать сказку" onclick="generateStory()">
+    </form>
+
+    <script>
+        function generateStory() {
+            var heroName = document.getElementById("hero-name").value;
+            var heroActivity = document.getElementById("hero-activity").value;
+            var heroFriend = document.getElementById("hero-friend").value;
+            var heroGift = document.getElementById("hero-gift").value;
+
+            var storyText = `Давным-давно, в мире полном волшебства, жил герой по имени ${heroName}. 
+Его любимое занятие было исследование древних руин, и он считался самым отважным археологом во всем королевстве. 
+Он имел верного друга по имени ${heroFriend}, который всегда сопровождал его в опасных приключениях.
+
+В один день, во время своих поисков, ${heroName} и ${heroFriend} обнаружили волшебную карту, которая вела к забытому сокровищу. 
+Их путешествие началось. Они преодолели множество ловушек и преград, но несмотря ни на что, они оставались непоколебимыми в своей цели.
+
+Наконец, они добрались до скрытой пещеры, где нашли древний сундук, полный драгоценностей. 
+Этот сокровищный находка стала наградой за их мужество и дружбу.
+
+Их приключения не закончились там. ${heroName} и ${heroFriend} продолжили исследовать мир, находя новые загадки и встречая волшебство на каждом шагу. 
+Их история стала легендой, и они продолжали свои путешествия, несмотря на все трудности, ведомые дружбой и жаждой открытий.`;
+
+
+            var storyWindow = window.open("", "Сказка", "width=600, height=400");
+            storyWindow.document.write("<html><head><title>Сказка</title></head><body>");
+            storyWindow.document.write("<h1>Сказка</h1>");
+            storyWindow.document.write("<p>" + storyText + "</p>");
+            storyWindow.document.write("</body></html>");
+        }
+    </script>
+</body>
+</html>

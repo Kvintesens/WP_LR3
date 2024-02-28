@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <script>
+        var months = [
+            'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+            'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+        ];
+
+        var daysOfWeek = [
+            'воскресенье', 'понедельник', 'вторник', 'среда',
+            'четверг', 'пятница', 'суббота'
+        ];
+
+        function getBirthday() {
+            var inputDate = prompt('Пожалуйста, введите дату вашего рождения в формате ГГ.ММ.ДД:');
+            var birthday = new Date(inputDate);
+
+            if (!isNaN(birthday.getTime())) {
+                var dayOfWeek = daysOfWeek[birthday.getDay()];
+                var day = birthday.getDate();
+                var month = months[birthday.getMonth()];
+                var year = birthday.getFullYear();
+
+                var resultDiv = document.createElement('div');
+                resultDiv.innerHTML = 'Я родился ' + day + ' ' + month + ' ' + year + ' года, в '+ dayOfWeek;
+                document.body.appendChild(resultDiv);
+            } else {
+                alert('Неверный формат даты. Пожалуйста, введите дату в формате ГГ.ММ.ДД');
+            }
+        }
+
+        window.onload = getBirthday;
+    </script>
+</body>
+</html>

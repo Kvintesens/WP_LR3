@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Страничка по заказу</title>
+</head>
+<body>
+    <h1>Страничка по заказу</h1>
+    <form id="orderForm">
+        <label for="artist">Выберите художника:</label>
+        <select id="artist" name="artist">
+            <option value="Айвазовский">Айвазовский</option>
+            <option value="Репин">Репин</option>
+            <option value="Тропинин">Тропинин</option>
+        </select>
+
+        <br>
+
+        <label for="signature">Подпись</label>
+        <input type="text" id="signature" name="signature">
+
+        <br>
+
+        <label>Декорирование текста</label><br>
+        <input type="checkbox" id="italic" name="italic" value="italic">
+        <label for="italic">курсив</label><br>
+
+        <input type="checkbox" id="underline" name="underline" value="underline">
+        <label for="underline">подчеркивание</label><br>
+
+        <input type="checkbox" id="bold" name="bold" value="bold">
+        <label for="bold">жирный</label><br>
+
+        <br>
+
+        <label>Картинка для фона</label><br>
+        <input type="radio" id="aivaz" name="background" value="aivaz.jpg">
+        <label for="aivaz">Айвазовский</label><br>
+
+        <input type="radio" id="repin" name="background" value="repin.jpg">
+        <label for="repin">Репин</label><br>
+
+        <input type="radio" id="tropinin" name="background" value="tropinin.jpg">
+        <label for="tropinin">Тропинин</label><br>
+
+        <button type="button" onclick="showOrder()">Показать</button>
+    </form>
+
+    <script>
+        function showOrder() {
+            const artist = document.getElementById("artist").value;
+            const signature = document.getElementById("signature").value;
+            const backgroundValue = document.querySelector('input[name="background"]:checked').value;
+            const italic = document.getElementById("italic").checked ? "italic" : "normal";
+            const underline = document.getElementById("underline").checked ? "underline" : "none";
+            const bold = document.getElementById("bold").checked ? "bold" : "normal";
+
+            const newWindow = window.open("", "_blank", "width=400,height=400");
+            newWindow.document.write(`
+                <html>
+                <head>
+                    <title>Ваш заказ</title>
+                    <style>
+                        p {
+                            font-style: ${italic};
+                            text-decoration: ${underline};
+                            font-weight: ${bold};
+                        }
+                    </style>
+                </head>
+                <body>
+                    <p>${artist}</p>
+                    <img src="${backgroundValue}" alt="Изображение" style="width: 33.33%;">
+                    <p>${signature}</p>
+                    <button onclick="window.close()">Закрыть</button>
+                </body>
+                </html>
+            `);
+            newWindow.document.close();
+        }
+    </script>
+</body>
+</html>

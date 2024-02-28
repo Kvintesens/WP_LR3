@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <form>
+        <label for="daysRemaining">Дней до каникул осталось:</label>
+        <input type="text" id="daysRemaining" readonly>
+    </form>
+
+    <script>
+        // Функция для вычисления количества дней между текущей датой и 1 января 2024 года
+        function calculateDaysRemaining() {
+            const currentDate = new Date();
+            const targetDate = new Date("2023-12-31");
+            const daysRemaining = Math.ceil((targetDate - currentDate) / (1000 * 60 * 60 * 24));
+            return daysRemaining;
+        }
+
+        // Функция для обновления количества дней и вывода на страницу
+        function updateDaysRemaining() {
+            const daysRemaining = calculateDaysRemaining();
+            document.getElementById("daysRemaining").value = daysRemaining;
+        }
+
+        // Отображаем дни до каникул при загрузке страницы и устанавливаем интервал обновления
+        document.addEventListener("DOMContentLoaded", function() {
+            updateDaysRemaining();
+
+            // Устанавливаем интервал обновления каждую секунду
+            setInterval(updateDaysRemaining, 1000);
+
+            const endMessage = document.createElement("p");
+            endMessage.textContent = "Каникулы начинаются 31 декабря 2023 года";
+            document.body.appendChild(endMessage);
+        });
+    </script>
+</body>
+</html>

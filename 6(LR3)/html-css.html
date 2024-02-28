@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Текущая дата</title>
+</head>
+<body>
+    <p id="currentDate"></p>
+
+    <script>
+        var daysOfWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+        var months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+
+        var today = new Date();
+
+        var dayOfWeek = daysOfWeek[today.getDay()];
+        var day = today.getDate();
+        var month = months[today.getMonth()];
+        var year = today.getFullYear();
+
+        
+        var currentDateStr = 'Сегодня ' + day + ' ' + month + ' ' + year + ' года, '+ dayOfWeek;
+
+        document.getElementById("currentDate").textContent = currentDateStr;
+    </script>
+</body>
+</html>

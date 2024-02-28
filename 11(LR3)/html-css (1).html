@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function showOrder() {
+            const title = document.getElementById("title").value;
+            const signature = document.getElementById("signature").value;
+            const selectedImage = document.querySelector('input[name="image"]:checked');
+            const bgColor = document.getElementById("bgColor").value;
+            const textColor = document.querySelector('input[name="textColor"]:checked').value;
+
+            if (!title || !signature || !selectedImage || !bgColor || !textColor) {
+                alert("Пожалуйста, заполните все поля в форме.");
+                return;
+            }
+
+            const imageSrc = selectedImage.value === "Собака" ? "dog.jpg" :
+                             selectedImage.value === "Одинокий цветок" ? "singleflower.jpg" :
+                             selectedImage.value === "Букет" ? "buket.jpg" : "";
+
+            if (!imageSrc) {
+                alert("Выбрано недопустимое изображение.");
+                return;
+            }
+
+            const newWindow = window.open('', '_blank', 'width=600,height=400');
+            newWindow.document.write(`
+                <html>
+                <head>
+                    <title>Ваш заказ</title>
+                </head>
+                <body style="background-color: ${bgColor}; color: ${textColor};">
+                    <h1>${title}</h1>
+                    <img src="${imageSrc}" alt="Изображение">
+                    <p>${signature}</p>
+                    <button onclick="window.close()">Закрыть</button>
+                </body>
+                </html>
+            `);
+            newWindow.document.close();
+        }
+    </script>
+</head>
+<body>
+    <h1>Страничка по заказу</h1>
+    <form id="orderForm">
+        <label for="title">Заголовок:</label>
+        <input type="text" id="title" name="title" required><br>
+
+        <label>Картинка:</label><br>
+        <input type="radio" id="dog" name="image" value="Собака">
+        <label for="dog">Собака</label><br>
+        <input type="radio" id="flower" name="image" value="Одинокий цветок">
+        <label for="flower">Одинокий цветок</label><br>
+        <input type="radio" id="bouquet" name="image" value="Букет">
+        <label for="bouquet">Букет</label><br>
+
+        <label for="signature">Подпись:</label>
+        <input type="text" id="signature" name="signature" required><br>
+
+        <label for="bgColor">Цвет фона:</label>
+        <select id="bgColor" name="bgColor">
+            <option value="white">Белый</option>
+            <option value="blue">Синий</option>
+            <option value="red">Красный</option>
+        </select><br>
+
+        <label>Цвет текста:</label><br>
+        <input type="radio" id="textWhite" name="textColor" value="white">
+        <label for="textWhite">Белый</label><br>
+        <input type="radio" id="textBlue" name="textColor" value="blue">
+        <label for="textBlue">Синий</label><br>
+        <input type="radio" id="textRed" name="textColor" value="red">
+        <label for="textRed">Красный</label><br>
+
+        <button type="reset">Сброс</button>
+        <button type="button" onclick="showOrder()">Показать</button>
+    </form>
+</body>
+</html>

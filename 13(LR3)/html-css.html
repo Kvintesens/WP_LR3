@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Анкета</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Анкета</h1>
+    <form id="bioForm">
+        <table>
+            <tr>
+                <td><label for="surname">Фамилия</label></td>
+                <td><input type="text" id="surname" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="firstname">Имя</label></td>
+                <td><input type="text" id="firstname" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="middlename">Отчество</label></td>
+                <td><input type="text" id="middlename" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="birthYear">Год рождения</label></td>
+                <td><input type="text" id="birthYear" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="birthPlace">Место рождения (город)</label></td>
+                <td><input type="text" id="birthPlace" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="favoriteActivity">Любимое занятие</label></td>
+                <td><input type="text" id="favoriteActivity" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="hatedActivity">Нелюбимое занятие</label></td>
+                <td><input type="text" id="hatedActivity" required></td>
+            </tr>
+        </table>
+
+        <input type="button" value="Сформировать биографию" onclick="generateBiography()">
+    </form>
+
+    <script>
+        function generateBiography() {
+            var surname = document.getElementById("surname").value;
+            var firstname = document.getElementById("firstname").value;
+            var middlename = document.getElementById("middlename").value;
+            var birthYear = document.getElementById("birthYear").value;
+            var birthPlace = document.getElementById("birthPlace").value;
+            var favoriteActivity = document.getElementById("favoriteActivity").value;
+            var hatedActivity = document.getElementById("hatedActivity").value;
+
+            var bioText = `Я, ${surname} ${firstname} ${middlename}, родился в ${birthYear} году в городе ${birthPlace}. 
+            Больше всего я люблю ${favoriteActivity} и очень не люблю ${hatedActivity}. 
+            Было бы замечательно, всю жизнь только ${favoriteActivity}, но к сожалению приходится иногда и ${hatedActivity}.`;
+
+            var bioWindow = window.open("", "Биография", "width=600, height=400");
+            bioWindow.document.write("<html><head><title>О себе</title></head><body>");
+            bioWindow.document.write("<h1>О себе</h1>");
+            bioWindow.document.write("<p>" + bioText + "</p>");
+            bioWindow.document.write("</body></html>");
+        }
+    </script>
+</body>
+</html>
